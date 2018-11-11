@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PlayGround</string>
+    <string name="search">Search</string>
+    <string name="error_message">Failed to get results, please try again</string>
+</resources>
