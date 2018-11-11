@@ -13,11 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wero.gec.Utils.NetworkUtil;
-import com.wero.gec.githubRepositories.GithubAdapter;
-import com.wero.gec.githubRepositories.GithubRepoActivity;
-import com.wero.gec.githubRepositories.GithubRepoQueryTask;
-import com.wero.gec.githubRepositories.ListItemClickListener;
-import com.wero.gec.githubRepositories.Repository;
+import com.wero.gec.github_repositories.GithubRepoAdapter;
+import com.wero.gec.github_repositories.GithubRepoActivity;
+import com.wero.gec.github_repositories.GithubRepoQueryTask;
+import com.wero.gec.github_repositories.ListItemClickListener;
+import com.wero.gec.github_repositories.Repository;
 
 
 import org.json.JSONArray;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
     private List<Repository> repositories;
 
     private RecyclerView mGithubRes;
-    private GithubAdapter mGithubAdapter;
+    private GithubRepoAdapter mGithubRepoAdapter;
     private EditText mSearchBox;
     private Toast mToast;
 
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
             repositories = getRepositories();
-            mGithubAdapter = new GithubAdapter(repositories, this);
-            mGithubRes.setAdapter(mGithubAdapter);
+            mGithubRepoAdapter = new GithubRepoAdapter(repositories, this);
+            mGithubRes.setAdapter(mGithubRepoAdapter);
             return true;
         }
 

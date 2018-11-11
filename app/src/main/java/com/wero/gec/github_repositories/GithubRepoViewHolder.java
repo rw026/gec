@@ -1,4 +1,4 @@
-package com.wero.gec.githubRepositories;
+package com.wero.gec.github_repositories;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

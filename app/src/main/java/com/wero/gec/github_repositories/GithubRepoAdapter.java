@@ -1,4 +1,4 @@
-package com.wero.gec.githubRepositories;
+package com.wero.gec.github_repositories;
 
 import com.wero.gec.R;
 
@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import java.util.List;
 
 
-public class GithubAdapter extends RecyclerView.Adapter<GithubRepoViewHolder> {
+public class GithubRepoAdapter extends RecyclerView.Adapter<GithubRepoViewHolder> {
     private final ListItemClickListener mOnClickListener;
 
     private int numberOfItems;
     private List<Repository> repositories;
 
-    public GithubAdapter(List<Repository> repositories, ListItemClickListener listener) {
+    public GithubRepoAdapter(List<Repository> repositories, ListItemClickListener listener) {
         this.repositories = repositories;
 
         numberOfItems = repositories.size();

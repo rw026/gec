@@ -1,4 +1,4 @@
-package com.wero.gec.githubRepositories;
+package com.wero.gec.github_repositories;
 
 public interface ListItemClickListener {
 

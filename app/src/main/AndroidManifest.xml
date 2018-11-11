@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.wero.gec.githubRepositories.GithubRepoActivity"></activity>
+        <activity android:name="com.wero.gec.github_repositories.GithubRepoActivity"></activity>
     </application>
 
 </manifest>
