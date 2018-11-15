@@ -1,8 +1,11 @@
 package com.wero.gec.github_repositories;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Repository implements Serializable {
+public class Repository implements Serializable, Parcelable {
     private String name;
     private String url;
     private String description;
@@ -51,4 +54,28 @@ public class Repository implements Serializable {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(url);
+        dest.writeString(description);
+    }
+
+    public static final Parcelable.Creator<Repository> CREATOR = new Parcelable.Creator<Repository>() {
+        @Override
+        public Repository createFromParcel(Parcel source) {
+            return new Repository(source.readString(), source.readString(), source.readString());
+        }
+
+        @Override
+        public Repository[] newArray(int size) {
+            return new Repository[size];
+        }
+    };
 }

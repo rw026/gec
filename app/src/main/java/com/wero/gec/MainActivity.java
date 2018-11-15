@@ -2,6 +2,8 @@ package com.wero.gec;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +33,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements ListItemClickListener, Serializable {
+    private final String REPOSITORIES_CALLBACK = "repositories_callback";
+
     private Integer numberElements;
     private List<Repository> repositories;
 
@@ -50,6 +54,14 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mGithubRes.setLayoutManager(layoutManager);
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(REPOSITORIES_CALLBACK)) {
+            repositories = savedInstanceState.getParcelableArrayList(REPOSITORIES_CALLBACK);
+            if (repositories != null) {
+                mGithubRepoAdapter = new GithubRepoAdapter(repositories, this);
+                mGithubRes.setAdapter(mGithubRepoAdapter);
+            }
+        }
     }
 
     @Override
@@ -124,7 +136,13 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         Context context = MainActivity.this;
         Class destActivity = GithubRepoActivity.class;
         Intent intent = new Intent(context, destActivity);
-        intent.putExtra("Repository", repositories.get(clickedItemIndex));
+        intent.putExtra("Repository", (Serializable) repositories.get(clickedItemIndex));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(REPOSITORIES_CALLBACK, (ArrayList<? extends Parcelable>) repositories);
     }
 }
